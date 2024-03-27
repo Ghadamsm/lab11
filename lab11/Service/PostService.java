@@ -37,8 +37,9 @@ public class PostService {
 
         if (c == null ) {
             if (u == null) {
-                throw new ApiException("Invalid Id");
+                throw new ApiException("Invalid user Id");
             }
+            throw new ApiException("Invalid category Id");
         }
 
         post.setPublishDate(LocalDate.now());
