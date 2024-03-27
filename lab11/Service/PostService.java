@@ -30,10 +30,10 @@ public class PostService {
     }
 
 
-    public void addPost(Integer CId, Integer UId ,Post post){
+    public void addPost(Post post){
 
-     Category c = categoryRepository.findCategoryByID(CId);
-     User u = userRepository.findUserByID(UId);
+     Category c = categoryRepository.findCategoryByID(post.getCategoryId());
+     User u = userRepository.findUserByID(post.getUserId());
 
         if (c == null ) {
             if (u == null) {
@@ -43,8 +43,6 @@ public class PostService {
         }
 
         post.setPublishDate(LocalDate.now());
-        post.setCategoryId(CId);
-        post.setUserId(UId);
         postRepository.save(post);
     }
 

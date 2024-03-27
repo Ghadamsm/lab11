@@ -28,15 +28,15 @@ public class CommentController {
 
 
 
-    @PostMapping("/add/{UId}/{PId}")
-    public ResponseEntity addComment(@PathVariable Integer UId, @PathVariable Integer PId , @RequestBody @Valid Comment comment , Errors errors){
+    @PostMapping("/add")
+    public ResponseEntity addComment( @RequestBody @Valid Comment comment , Errors errors){
 
         if (errors.hasErrors()){
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(400).body(message);
         }
 
-        commentService.addComment(UId, PId, comment);
+        commentService.addComment(comment);
         return ResponseEntity.status(200).body(new ApiResponse("Comment added"));
 
     }

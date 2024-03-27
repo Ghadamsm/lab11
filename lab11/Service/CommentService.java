@@ -31,12 +31,12 @@ public class CommentService {
     }
 
 
-    public void addComment(Integer UId , Integer PId , Comment comment){
+    public void addComment( Comment comment){
 
-        User u = userRepository.findUserByID(UId);
-        Post p = postRepository.findPostByID(PId);
+        User u = userRepository.findUserByID(comment.getUserId());
+        Post p = postRepository.findPostByID(comment.getPostId());
 
-        if (u == null && p == null){
+        if (u == null || p == null){
             throw new ApiException("Invalid id");
         }
 

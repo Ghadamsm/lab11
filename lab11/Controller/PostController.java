@@ -28,15 +28,15 @@ public class PostController {
 
 
 
-    @PostMapping("/add/{CId}/{UId}")
-    public ResponseEntity addPost(@PathVariable Integer CId , @PathVariable Integer UId ,@RequestBody @Valid Post post , Errors errors){
+    @PostMapping("/add")
+    public ResponseEntity addPost(@RequestBody @Valid Post post , Errors errors){
 
         if (errors.hasErrors()){
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(400).body(message);
         }
 
-        postService.addPost(CId, UId, post);
+        postService.addPost(post);
         return ResponseEntity.status(200).body(new ApiResponse("post added"));
 
     }
